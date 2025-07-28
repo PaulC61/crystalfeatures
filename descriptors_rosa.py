@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from ase.build import bulk, niggli_reduce
-from gpaw import GPAW, PW, FermiDirac
+from gpaw import GPAW, PW, FermiDirac, Mixer
 from ase.io import read
 import pandas as pd
 
@@ -41,6 +41,7 @@ def get_descriptors_for_structure(a, descriptor_size=100):
                 # nbands=100,
                 # parallel={'domain': 1, 'band': 1},
                 # occupations=FermiDirac(width=0.01),
+                mixer=Mixer(0.02, 5, 100),
                 convergence={'density': 1},
                 kpts=[1, 1, 1],
                 txt='gpaw_lcao.txt')
@@ -87,6 +88,9 @@ def get_descriptors_for_structure(a, descriptor_size=100):
          H.e_total_free/num_atoms]
 
 
+
+
+
 def descriptors(cif, descriptor_size=100, calculation_type='bulk'):
     if type(cif) is string:
         parser = CifParser.from_string(cif)
@@ -104,7 +108,6 @@ def descriptors(cif, descriptor_size=100, calculation_type='bulk'):
             niggli_reduce(a)
         fix_psuedo(a)
         d_pristine = get_descriptors_for_structure(a, descriptor_size)
-        
     except Exception as e:
         print('Problem in GPAW')
     if len(d_pristine) > 0:
