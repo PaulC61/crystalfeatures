@@ -41,7 +41,7 @@ def get_descriptors_for_structure(a, descriptor_size=100):
                 # nbands=100,
                 # parallel={'domain': 1, 'band': 1},
                 # occupations=FermiDirac(width=0.01),
-                mixer=Mixer(0.02, 5, 100),
+                # mixer=Mixer(0.02, 5, 100),
                 convergence={'density': 1},
                 kpts=[1, 1, 1],
                 txt='gpaw_lcao.txt')
