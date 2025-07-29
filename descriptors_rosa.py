@@ -15,15 +15,13 @@ import pandas as pd
 
 import glob
 
-folder = '/g/data/mo5/sat562/'
-folder = '/mnt/c/MyCodes/MaterialScience/GPAW/'
 g = glob.glob(
-    folder + 'gpaw-setups-0.9.20000/*.PBE.gz')
+    '../app/gpaw-setups-0.9.20000/*.PBE.gz')
 
 available_atoms = []
 for i in g:
     available_atoms += [i.replace(
-        folder + 'gpaw-setups-0.9.20000/', '').split('.')[0]]
+        '../app/gpaw-setups-0.9.20000/', '').split('.')[0]]
 
 
 def fix_psuedo(a):
@@ -92,6 +90,7 @@ def get_descriptors_for_structure(a, descriptor_size=100):
 
 
 def descriptors(cif, descriptor_size=100, calculation_type='bulk'):
+    print(g)
     if type(cif) is string:
         parser = CifParser.from_string(cif)
         structure = parser.get_structures()
