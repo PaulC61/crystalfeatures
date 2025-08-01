@@ -90,7 +90,6 @@ def get_descriptors_for_structure(a, descriptor_size=100):
 
 
 def descriptors(cif, descriptor_size=100, calculation_type='bulk'):
-    print(g)
     if type(cif) is string:
         parser = CifParser.from_string(cif)
         structure = parser.get_structures()
